@@ -1,0 +1,38 @@
+﻿<Window x:Class="simpleMailTransferProtocolExample.messageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:simpleMailTransferProtocolExample"
+        mc:Ignorable="d"
+         WindowState="Maximized"
+    
+        Title="messageWindow" Height="1080" Width="1920">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <TextBlock Name="fromTB" Margin="10" TextWrapping="Wrap"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.15*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Name="subject" Margin="10" TextWrapping="Wrap" Grid.Column="0"/>
+                
+                <Button Name="openRmTaskBTN" Click="openRmTaskBTN_Click" Content="open in RM" Height="30" Width="80" HorizontalAlignment="Right" Grid.Column="1" Margin="0 0 10 0" Visibility="Hidden"/>
+                
+            </Grid>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1">
+            <TextBlock Margin="10" Name="bodyTB" TextWrapping="Wrap"/>
+        </ScrollViewer>
+
+    </Grid>
+</Window>

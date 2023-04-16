@@ -1,0 +1,21 @@
+﻿<Window x:Class="simpleMailTransferProtocolExample.vh2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:simpleMailTransferProtocolExample"
+        mc:Ignorable="d"
+        Title="vh2" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="dataGridSentEmails" ItemsSource="{Binding SentEmails}" AutoGenerateColumns="False" SelectionMode="Extended" SelectionUnit="FullRow">
+    <DataGrid.Columns>
+        <DataGridTextColumn Header="From" Binding="{Binding From}" />
+        <DataGridTextColumn Header="To" Binding="{Binding To}" />
+        <DataGridTextColumn Header="Subject" Binding="{Binding Subject}" />
+        <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
+        <DataGridTextColumn Header="MessageId" Binding="{Binding MessageId}" />
+    </DataGrid.Columns>
+</DataGrid>
+<!--<Button Content="Delete Selected Emails" Click="btnDeleteSelected_Click" />-->
+    </Grid>
+</Window>

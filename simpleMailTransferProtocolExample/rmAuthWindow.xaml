@@ -1,0 +1,22 @@
+﻿<Window x:Class="simpleMailTransferProtocolExample.rmAuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:simpleMailTransferProtocolExample"
+        mc:Ignorable="d" Title="rmAuthWindow" Height="250" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox Name="loginTB" Grid.Row="0" Width="200" Height="25" Text="morozov_av"/>
+
+        <PasswordBox Name="passwordPB" Grid.Row="1" Width="200" Height="25" Password="bKL4U7Q5hS"/>
+
+        <Button Content="Войти" Name="enterBTN" Click="enterBTN_Click" Grid.Row="2" Width="100" Height="25"/>
+
+    </Grid>
+</Window>

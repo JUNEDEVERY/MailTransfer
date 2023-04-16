@@ -1,0 +1,112 @@
+﻿<Window x:Class="simpleMailTransferProtocolExample.messageAndrew"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:simpleMailTransferProtocolExample"
+        mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:domain="clr-namespace:MaterialDesignDemo.Domain" d:DataContext="{d:DesignInstance Type=domain:ButtonsViewModel}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="messageAndrew" Height="450" Width="800">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+    </Window.CommandBindings>
+    <Grid>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBox Name="subjectTB" Width="300" Grid.Row="0" Height="30"/>
+
+            <TextBox Name="messageBodyTB" Height="100" Grid.Row="1" Width="300"/>
+            <DockPanel Grid.Row="4">
+                <ToolBar DockPanel.Dock="Top">
+                    <Button Command="ApplicationCommands.Open">
+                        <Image Source="image\papka.png" Width="32" Height="20" />
+                    </Button>
+                    <Button Command="ApplicationCommands.Save">
+                        <Image Source="image\saveas.png" Width="16" Height="16" />
+                    </Button>
+                    <Separator />
+                    <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold">
+                        <Image Source="image\bold.png" Width="16" Height="16" />
+                    </ToggleButton>
+                    <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic">
+                        <Image Source="image\italic.png" Width="16" Height="16" />
+                    </ToggleButton>
+                    <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline">
+                        <Image Source="image\underline.png" Width="16" Height="16" />
+                    </ToggleButton>
+                    <Separator />
+                    <ComboBox Name="cmbFontFamily" Width="150" SelectionChanged="cmbFontFamily_SelectionChanged" />
+                    <ComboBox Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" />
+                </ToolBar>
+                <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" />
+            </DockPanel>
+            <TextBox Name="toTB" Height="30" Width="300" Grid.Row="2" />
+            <!-- floating action button with progress -->
+
+            <Button Grid.Row="3" Name="sendBTN" Click="sendBTN_Click"
+  Margin="8,0,0,0"
+  materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
+  materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}"
+  Command="{Binding SaveCommand}"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+  Style="{StaticResource MaterialDesignFloatingActionLightButton}">
+                <!-- simple example of toggling/animating pack icon with a data trigger -->
+                <materialDesign:PackIcon
+    Width="24"
+    Height="24">
+                    <materialDesign:PackIcon.Style>
+                        <Style
+        TargetType="materialDesign:PackIcon"
+        BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
+                            <Setter
+          Property="Kind"
+          Value="CloudSync" />
+                            <Style.Triggers>
+                                <DataTrigger
+            Binding="{Binding IsSaveComplete}"
+            Value="True">
+                                    <Setter
+              Property="Kind"
+              Value="Check" />
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation
+                    Storyboard.TargetProperty="Opacity"
+                    From="0"
+                    To="1"
+                    Duration="0:0:0.8" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </materialDesign:PackIcon.Style>
+                </materialDesign:PackIcon>
+            </Button>
+            <!--<Button  Click="sendBTN_Click" Width="100" Height="30" Grid.Row="3" Content="Отправить">
+                
+                
+                
+                    
+            </Button>-->
+        </Grid>
+    </Grid>
+</Window>
